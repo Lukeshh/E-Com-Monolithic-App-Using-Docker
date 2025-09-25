@@ -1,7 +1,7 @@
 package com.app.ecom_application.controller;
 
 import com.app.ecom_application.dto.CartItemDtoRequest;
-import com.app.ecom_application.model.entity.CartItemEntity;
+import com.app.ecom_application.entity.CartItemEntity;
 import com.app.ecom_application.repository.CartItemRepository;
 import com.app.ecom_application.service.CartItemService;
 import org.springframework.http.HttpStatus;

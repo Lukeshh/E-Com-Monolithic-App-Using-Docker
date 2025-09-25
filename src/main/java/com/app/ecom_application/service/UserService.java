@@ -3,8 +3,9 @@ package com.app.ecom_application.service;
 import com.app.ecom_application.dto.AddressDto;
 import com.app.ecom_application.dto.UserDtoRequest;
 import com.app.ecom_application.dto.UserDtoResponse;
-import com.app.ecom_application.model.entity.AddressEntity;
-import com.app.ecom_application.model.entity.UserEntity;
+
+import com.app.ecom_application.entity.AddressEntity;
+import com.app.ecom_application.entity.UserEntity;
 import com.app.ecom_application.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

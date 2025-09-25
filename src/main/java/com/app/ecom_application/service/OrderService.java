@@ -2,7 +2,7 @@ package com.app.ecom_application.service;
 
 import com.app.ecom_application.dto.OrderItemDto;
 import com.app.ecom_application.dto.OrderResponseDto;
-import com.app.ecom_application.model.entity.*;
+import com.app.ecom_application.entity.*;
 import com.app.ecom_application.repository.CartItemRepository;
 import com.app.ecom_application.repository.OrderItemRepository;
 import com.app.ecom_application.repository.UserRepository;

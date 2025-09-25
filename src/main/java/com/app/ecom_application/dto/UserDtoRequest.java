@@ -1,6 +1,7 @@
 package com.app.ecom_application.dto;
 
-import com.app.ecom_application.model.entity.UserRole;
+
+import com.app.ecom_application.entity.UserRole;
 
 public class UserDtoRequest {
     private String firstName;

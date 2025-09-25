@@ -2,7 +2,7 @@ package com.app.ecom_application.service;
 
 import com.app.ecom_application.dto.ProductRequestDto;
 import com.app.ecom_application.dto.ProductResponseDto;
-import com.app.ecom_application.model.entity.ProductsEntity;
+import com.app.ecom_application.entity.ProductsEntity;
 import com.app.ecom_application.repository.ProductsRepository;
 import com.app.ecom_application.repository.UserRepository;
 import org.springframework.stereotype.Service;

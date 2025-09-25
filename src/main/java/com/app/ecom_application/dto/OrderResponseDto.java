@@ -1,6 +1,7 @@
 package com.app.ecom_application.dto;
 
-import com.app.ecom_application.model.entity.OrderStatus;
+
+import com.app.ecom_application.entity.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

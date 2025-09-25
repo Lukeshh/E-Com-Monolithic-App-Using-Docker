@@ -2,7 +2,6 @@ package com.app.ecom_application.controller;
 
 import com.app.ecom_application.dto.ProductRequestDto;
 import com.app.ecom_application.dto.ProductResponseDto;
-import com.app.ecom_application.model.entity.ProductsEntity;
 import com.app.ecom_application.repository.ProductsRepository;
 import com.app.ecom_application.service.ProductService;
 import org.springframework.http.HttpStatus;

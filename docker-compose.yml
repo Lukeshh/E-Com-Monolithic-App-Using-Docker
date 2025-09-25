@@ -15,7 +15,7 @@ services:
       - postgres
 
     restart: unless-stopped
-
+#Provide the GUI
   pgadmin:
     container_name: pgadmin_container
     image: dpage/pgadmin4
