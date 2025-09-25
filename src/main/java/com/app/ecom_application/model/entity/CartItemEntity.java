@@ -1,7 +1,6 @@
 package com.app.ecom_application.model.entity;
 
 import jakarta.persistence.*;
-import com.app.ecom_application.model.entity.UserEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,7 +12,7 @@ public class CartItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer quantity;
+    private Integer stockQuantity;
     private BigDecimal price;
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -24,7 +23,7 @@ public class CartItemEntity {
     private UserEntity userEntity;
 
     @ManyToOne
-    @JoinColumn(name = "products_entity_id")
+    @JoinColumn(name = "products_entity_id", nullable = false)
     private ProductsEntity productsEntity;
 
     public ProductsEntity getProductsEntity() {
@@ -51,12 +50,12 @@ public class CartItemEntity {
         this.id = id;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(Integer stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
     public BigDecimal getPrice() {

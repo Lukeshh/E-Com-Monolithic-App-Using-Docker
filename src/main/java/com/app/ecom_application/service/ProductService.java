@@ -9,50 +9,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
     private final ProductsRepository productsRepository;
     private final UserRepository userRepository;
-
-    public ProductService(ProductsRepository productsRepository, UserRepository userRepository) {
+    private  final MapToRequest mapToRequest;
+    public ProductService(ProductsRepository productsRepository, UserRepository userRepository, MapToRequest mapToRequest) {
         this.productsRepository = productsRepository;
         this.userRepository = userRepository;
+        this.mapToRequest = mapToRequest;
     }
 
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto) {
-        ProductsEntity entity = new ProductsEntity();
-        entity = mapProductDtoTOEntity(productRequestDto);
+        ProductsEntity entity  = mapToRequest.mapProductDtoTOEntity(productRequestDto);
         ProductsEntity saveToDb = productsRepository.save(entity);
-        ProductResponseDto productResponseDto = new ProductResponseDto();
-        productResponseDto = mapEnityToProductResponseDto(entity);
-
+        ProductResponseDto productResponseDto  = mapToRequest.mapEnityToProductResponseDto(entity);
         return productResponseDto;
     }
 
-    public ProductsEntity mapProductDtoTOEntity(ProductRequestDto productRequestDto) {
-        ProductsEntity entity = new ProductsEntity();
-        entity.setCategory(productRequestDto.getCategory());
-        entity.setName(productRequestDto.getName());
-        entity.setPrice(productRequestDto.getPrice());
-        entity.setDescription(productRequestDto.getDescription());
-        entity.setStockQuantity(productRequestDto.getStockQuantity());
-        entity.setImageUrl(productRequestDto.getImageUrl());
-        return entity;
-    }
 
-    public ProductResponseDto mapEnityToProductResponseDto(ProductsEntity productsEntity) {
-        ProductResponseDto productResponseDto = new ProductResponseDto();
-        productResponseDto.setId(productsEntity.getId());
-        productResponseDto.setCategory(productsEntity.getCategory());
-        productResponseDto.setName(productsEntity.getName());
-        productResponseDto.setPrice(productsEntity.getPrice());
-        productResponseDto.setDescription(productsEntity.getDescription());
-        productResponseDto.setStockQuantity(productsEntity.getStockQuantity());
-        productResponseDto.setImageUrl(productsEntity.getImageUrl());
-        return productResponseDto;
-    }
 
     public ProductResponseDto updateProduct(ProductRequestDto productRequestDto, Long id) {
 
@@ -62,7 +38,7 @@ public class ProductService {
             if (productInEntity != null) {
                 checkEntry(productRequestDto, productInEntity);
                 ProductsEntity saveToDb = productsRepository.save(productInEntity);
-                productResponseDto = mapEnityToProductResponseDto(saveToDb);
+                productResponseDto = mapToRequest.mapEnityToProductResponseDto(saveToDb);
                 return productResponseDto;
             }
         } catch (Exception e) {
@@ -92,7 +68,7 @@ public class ProductService {
         List<ProductsEntity> productsEntities = productsRepository.findAll();
         List<ProductResponseDto> responseList = new ArrayList<>();
         for (ProductsEntity entity : productsEntities) {
-            ProductResponseDto responseDto = mapEnityToProductResponseDto(entity);
+            ProductResponseDto responseDto = mapToRequest.mapEnityToProductResponseDto(entity);
             responseList.add(responseDto);
         }
         return responseList;
@@ -110,7 +86,7 @@ public class ProductService {
         List<ProductsEntity> entities = productsRepository.searchProducts(keyword);
         List<ProductResponseDto> responseDtosList = new ArrayList<>();
         for (ProductsEntity entity : entities) {
-            ProductResponseDto responseDto = mapEnityToProductResponseDto(entity);
+            ProductResponseDto responseDto = mapToRequest.mapEnityToProductResponseDto(entity);
             responseDtosList.add(responseDto);
         }
         return responseDtosList;

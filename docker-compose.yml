@@ -1,0 +1,43 @@
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:14
+    environment:
+      POSTGRES_USER: lukesh
+      POSTGRES_PASSWORD: querty
+      PGDATA: /data/postgres_data
+    volumes:
+      - postgres_data:/data/postgres_data
+    ports:
+      - "5433:5432"
+
+    networks:
+      - postgres
+
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@4pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "5050:80"
+
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+   postgres:
+     driver: bridge
+
+volumes:
+  postgres_data:
+  pgadmin:

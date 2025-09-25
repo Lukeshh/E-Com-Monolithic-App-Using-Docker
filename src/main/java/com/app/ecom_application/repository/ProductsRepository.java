@@ -12,4 +12,6 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Long> 
 
     @Query("Select p from ProductsEntity p  where p.active= true AND p.stockQuantity > 0 AND LOWER(p.name) LIKE  LOWER(CONCAT('%', :keyword, '%') )")
     List<ProductsEntity> searchProducts(@Param("keyword") String keyword);
+
+    Long id(Long id);
 }
